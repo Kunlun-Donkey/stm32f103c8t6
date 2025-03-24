@@ -1,3 +1,11 @@
+/*
+ * @Author: Kunlun-Donkey 1298394344@qq.com
+ * @Date: 2025-03-24 11:20:24
+ * @LastEditors: Kunlun-Donkey 1298394344@qq.com
+ * @LastEditTime: 2025-03-24 13:26:56
+ * @FilePath: \stm32f103c8t6\USER\main.c
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 /******************************************************************************
  * @file    main.c
  * @author  Kunlun-Donkey 1298394344@qq.com
@@ -10,71 +18,11 @@
 #include "stm32f10x_tim.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
+#include "motor.h" // 添加头文件引用
+#include "delay.h" // 添加延时头文件
 
 // 函数声明
-void TIM2_PWM_Init(void);
 void GPIO_Configuration(void);
-void Delay(uint32_t nCount);
-
-//=============================================================================
-// 函数名称：Delay
-// 功能概要：延时函数
-// 参数说明：nCount - 延时时间
-// 返回值：无
-//=============================================================================
-void Delay(uint32_t nCount)
-{
-  for(; nCount != 0; nCount--);
-}
-
-//=============================================================================
-// 函数名称：TIM2_PWM_Init
-// 功能概要：TIM2 PWM 初始化
-// 参数说明：无
-// 返回值：无
-//=============================================================================
-void TIM2_PWM_Init(void)
-{
-    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-    TIM_OCInitTypeDef TIM_OCInitStructure;
-    
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-    
-    // Time base configuration
-    TIM_TimeBaseStructure.TIM_Period = 20000 - 1; // 20ms period (50Hz)
-    TIM_TimeBaseStructure.TIM_Prescaler = 72 - 1; // 72MHz / 72 = 1MHz
-    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-    TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
-    
-    // PWM1 Mode configuration: Channel1
-    TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
-    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-    TIM_OCInitStructure.TIM_Pulse = 1500; // 1.5ms pulse width (neutral position for servo)
-    TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-    TIM_OC1Init(TIM2, &TIM_OCInitStructure);
-    TIM_OC1PreloadConfig(TIM2, TIM_OCPreload_Enable);
-    
-    // PWM1 Mode configuration: Channel2
-    TIM_OCInitStructure.TIM_Pulse = 1500; // 1.5ms pulse width
-    TIM_OC2Init(TIM2, &TIM_OCInitStructure);
-    TIM_OC2PreloadConfig(TIM2, TIM_OCPreload_Enable);
-    
-    // PWM1 Mode configuration: Channel3
-    TIM_OCInitStructure.TIM_Pulse = 1500; // 1.5ms pulse width
-    TIM_OC3Init(TIM2, &TIM_OCInitStructure);
-    TIM_OC3PreloadConfig(TIM2, TIM_OCPreload_Enable);
-    
-    // PWM1 Mode configuration: Channel4
-    TIM_OCInitStructure.TIM_Pulse = 1500; // 1.5ms pulse width
-    TIM_OC4Init(TIM2, &TIM_OCInitStructure);
-    TIM_OC4PreloadConfig(TIM2, TIM_OCPreload_Enable);
-    
-    TIM_ARRPreloadConfig(TIM2, ENABLE);
-    
-    // TIM2 enable counter
-    TIM_Cmd(TIM2, ENABLE);
-}
 
 //=============================================================================
 // 函数名称：main
@@ -85,17 +33,19 @@ void TIM2_PWM_Init(void)
 int main(void)
 {
     GPIO_Configuration();
-    TIM2_PWM_Init();
-    // Set PWM to 50% duty cycle
-    TIM_SetCompare1(TIM2, 10000); // Assuming 20ms period, 50% duty cycle is 10ms
-    TIM_SetCompare2(TIM2, 10000);
-    TIM_SetCompare3(TIM2, 10000);
-    TIM_SetCompare4(TIM2, 10000);
+    Motor_Init(); // 调用 motor.c 中的初始化函数
+
+    // 设置舵机初始角度为90度
+    Motor_SetAngle(1, 90);
+    Motor_SetAngle(2, 90);
+    Motor_SetAngle(3, 90);
+    Motor_SetAngle(4, 90);
+
     while (1)
     {
         // Toggle PC13
         GPIOC->ODR ^= GPIO_Pin_13;
-        Delay(7200000); // Adjust delay for desired blink rate
+        Delay_ms(500); // 使用毫秒级延时
     }
 }
 
