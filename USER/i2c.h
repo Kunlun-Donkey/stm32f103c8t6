@@ -12,7 +12,7 @@
 #include "stm32f10x.h"
 
 // 初始化模拟I2C
-void I2C_Init(void);
+void I2C_Init_Soft(void);
 
 // 发送I2C起始信号
 void I2C_Start(void);

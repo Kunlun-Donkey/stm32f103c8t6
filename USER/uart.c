@@ -1,6 +1,6 @@
 #include "stm32f10x.h"
 #include "uart.h"
-
+#include "stm32f10x_usart.h"
 #define UART1_RX_BUFFER_SIZE 128
 static uint8_t UART1_RxBuffer[UART1_RX_BUFFER_SIZE];
 static volatile uint16_t UART1_RxHead = 0;

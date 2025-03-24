@@ -6,7 +6,7 @@
 #include "stm32f10x.h"
 #include "i2c.h"
 #include "delay.h"
-
+#include "types.h" // 添加类型定义头文件
 // 定义SDA和SCL引脚
 #define I2C_SDA_PIN GPIO_Pin_4
 #define I2C_SCL_PIN GPIO_Pin_5
@@ -38,7 +38,7 @@
 // 参数说明：无
 // 返回值：无
 //=============================================================================
-void I2C_Init(void)
+void I2C_Init_Soft(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 

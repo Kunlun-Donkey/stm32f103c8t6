@@ -17,7 +17,7 @@
 #include "oled.h" // 添加 OLED 头文件引用
 #include "oled_faces.h" // 添加表情数据头文件
 #include "uart.h" // 添加 UART 头文件
-
+#include "types.h" // 添加类型定义头文件
 // 函数声明
 void GPIO_Configuration(void);
 
@@ -40,17 +40,17 @@ int main(void)
     OLED_ShowImage(Face_hello);
 
     // 设置舵机初始角度为90度
-    Motor_SetAngle(MOTOR_LEFT_FRONT, 90);
-    Motor_SetAngle(MOTOR_RIGHT_FRONT, 90);
+    Motor_SetAngle(MOTOR_LEFT_FRONT, 30);
+    Motor_SetAngle(MOTOR_RIGHT_FRONT, 60);
     Motor_SetAngle(MOTOR_LEFT_REAR, 90);
-    Motor_SetAngle(MOTOR_RIGHT_REAR, 90);
+    Motor_SetAngle(MOTOR_RIGHT_REAR, 120);
 
     while (1)
     {
-        if (UART1_RxHead != UART1_RxTail) { // 检查是否有接收到的数据
-            uint8_t received = UART1_GetChar();
-            UART1_SendChar(received); // 回显接收到的数据
-        }
+        // if (UART1_RxHead != UART1_RxTail) { // 检查是否有接收到的数据
+        //     uint8_t received = UART1_GetChar();
+        //     UART1_SendChar(received); // 回显接收到的数据
+        // }
 
         // Toggle PC13
         GPIOC->ODR ^= GPIO_Pin_13;
