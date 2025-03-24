@@ -4,12 +4,9 @@
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
  * @LastEditTime: 2025-03-24 13:47:31
  * @FilePath: \stm32f103c8t6\USER\oled_faces.c
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 存放不同表情的OLED数据
  */
-/*
- * @file    oled_faces.c
- * @brief   存放不同表情的OLED数据
- */
+
 
 #include "stm32f10x.h"
 #include "oled_faces.h"

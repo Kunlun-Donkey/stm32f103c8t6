@@ -1,11 +1,18 @@
 /*
- * @file    oled.c
- * @brief   OLED显示驱动实现
+ * @Author: Kunlun-Donkey 1298394344@qq.com
+ * @Date: 2025-03-24 13:46:14
+ * @LastEditors: Kunlun-Donkey 1298394344@qq.com
+ * @LastEditTime: 2025-03-24 14:01:16
+ * @FilePath: \stm32f103c8t6\USER\oled.c
+ * @Description: OLED显示驱动实现
  */
 
+
+#include "stm32f10x.h"
 #include "oled.h"
 #include "i2c.h"
 #include "delay.h"
+#include "oled_faces.h" // 添加表情数据头文件
 
 // OLED I2C地址
 #define OLED_ADDRESS 0x78

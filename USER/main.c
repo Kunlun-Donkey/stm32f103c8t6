@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:20:24
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 13:40:29
+ * @LastEditTime: 2025-03-24 14:00:07
  * @FilePath: \stm32f103c8t6\USER\main.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,6 +21,7 @@
 #include "motor.h" // 添加头文件引用
 #include "delay.h" // 添加延时头文件
 #include "oled.h" // 添加 OLED 头文件引用
+#include "oled_faces.h" // 添加表情数据头文件
 
 // 函数声明
 void GPIO_Configuration(void);
@@ -37,9 +38,8 @@ int main(void)
     Motor_Init(); // 调用 motor.c 中的初始化函数
     OLED_Init();  // 初始化 OLED
 
-    // 开机显示 "Hello"
-    OLED_Clear();
-    OLED_ShowString(0, 0, "Hello");
+    // 显示表情 "hello"
+    OLED_ShowImage(Face_hello);
 
     // 设置舵机初始角度为90度
     Motor_SetAngle(MOTOR_LEFT_FRONT, 90);
