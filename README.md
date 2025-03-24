@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:08:25
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:46:25
+ * @LastEditTime: 2025-03-24 14:49:49
  * @FilePath: \stm32f103c8t6\README.md
  * @Description: 
 -->
@@ -117,39 +117,40 @@ UART1 接收数据通过中断方式实现，接收到的数据会存储在内�
 ---
 # 附录
 ## stm32f103c8t6 IO 功能表
-| 引脚   | 功能描述     | 引脚功能                     |
-PA0	    |通用输入输出	|ADC1_IN0, TIM2_CH1, EXTI0
-PA1	    |通用输入输出	|ADC1_IN1, TIM2_CH2, EXTI1
-PA2	    |通用输入输出	|ADC1_IN2, TIM2_CH3, EXTI2
-PA3	    |通用输入输出	|ADC1_IN3, TIM2_CH4, EXTI3
-PA4	    |通用输入输出	|ADC1_IN4, I2C1_SDA, EXTI4
-PA5	    |通用输入输出	|ADC1_IN5, SPI1_SCK, TIM2_CH1
-PA6	    |通用输入输出	|ADC1_IN6, SPI1_MISO
-PA7	    |通用输入输出	|ADC1_IN7, SPI1_MOSI
-PA8	    |通用输入输出	|MCO, TIM1_CH1
-PA9	    |通用输入输出	|USART1_TX
-PA10	|通用输入输出	|USART1_RX
-PA11	|通用输入输出	|USB_DM
-PA12	|通用输入输出	|USB_DP
-PA13	|通用输入输出	|SWDIO
-PA14	|通用输入输出	|SWCLK
-PA15	|通用输入输出	|JTDI, TIM2_CH1
-PB0	    |通用输入输出	|ADC1_IN8, SPI1_NSS
-PB1	    |通用输入输出	|ADC1_IN9, SPI1_SCK
-PB2	    |通用输入输出	|I2C1_SCL, SPI1_MISO
-PB3	    |通用输入输出	|I2C1_SDA, SPI1_MOSI
-PB4	    |通用输入输出	|USART2_TX
-PB5	    |通用输入输出	|USART2_RX
-PB6	    |通用输入输出	|SPI1_SCK
-PB7	    |通用输入输出	|SPI1_MISO
-PB8	    |通用输入输出	|USART1_TX
-PB9	    |通用输入输出	|USART1_RX
-PB10	|通用输入输出	|SPI1_NSS
-PB11	|通用输入输出	|SPI1_MISO
-PB12	|通用输入输出	|SPI1_MOSI
-PB13	|通用输入输出	|SWDIO
-PB14	|通用输入输出	|SWCLK
-PB15	|通用输入输出	|JTDO
+| 引脚      | 功能描述     | 引脚功能 |
+| ---       | ---           | --- |
+|PA0	    |通用输入输出	|ADC1_IN0, TIM2_CH1, EXTI0
+|PA1	    |通用输入输出	|ADC1_IN1, TIM2_CH2, EXTI1
+|PA2	    |通用输入输出	|ADC1_IN2, TIM2_CH3, EXTI2
+|PA3	    |通用输入输出	|ADC1_IN3, TIM2_CH4, EXTI3
+|PA4	    |通用输入输出	|ADC1_IN4, I2C1_SDA, EXTI4
+|PA5	    |通用输入输出	|ADC1_IN5, SPI1_SCK, TIM2_CH1
+|PA6	    |通用输入输出	|ADC1_IN6, SPI1_MISO
+|PA7	    |通用输入输出	|ADC1_IN7, SPI1_MOSI
+|PA8	    |通用输入输出	|MCO, TIM1_CH1
+|PA9	    |通用输入输出	|USART1_TX
+|PA10	    |通用输入输出	|USART1_RX
+|PA11	    |通用输入输出	|USB_DM
+|PA12	    |通用输入输出	|USB_DP
+|PA13	    |通用输入输出	|SWDIO
+|PA14	    |通用输入输出	|SWCLK
+|PA15	    |通用输入输出	|JTDI, TIM2_CH1
+|PB0	    |通用输入输出	|ADC1_IN8, SPI1_NSS
+|PB1	    |通用输入输出	|ADC1_IN9, SPI1_SCK
+|PB2	    |通用输入输出	|I2C1_SCL, SPI1_MISO
+|PB3	    |通用输入输出	|I2C1_SDA, SPI1_MOSI
+|PB4	    |通用输入输出	|USART2_TX
+|PB5	    |通用输入输出	|USART2_RX
+|PB6	    |通用输入输出	|SPI1_SCK
+|PB7	    |通用输入输出	|SPI1_MISO
+|PB8	    |通用输入输出	|USART1_TX
+|PB9	    |通用输入输出	|USART1_RX
+|PB10	    |通用输入输出	|SPI1_NSS
+|PB11	    |通用输入输出	|SPI1_MISO
+|PB12	    |通用输入输出	|SPI1_MOSI
+|PB13	    |通用输入输出	|SWDIO
+|PB14	    |通用输入输出	|SWCLK
+|PB15	    |通用输入输出	|JTDO
 
 ## 常用外设
 USART：串口通信，常见于 PA9 (TX), PA10 (RX), PB6 (TX), PB7 (RX)。
