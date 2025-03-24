@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:08:25
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 13:09:42
+ * @LastEditTime: 2025-03-24 14:11:05
  * @FilePath: \stm32f103c8t6\README.md
  * @Description: 
 -->
@@ -20,6 +20,10 @@ destop dog
 - PC13: 用于灯光闪烁测试的GPIO输出口
 - PA4: 用于模拟I2C的SDA（数据线）
 - PA5: 用于模拟I2C的SCL（时钟线）
+- PA9: **TX (发送)**
+- PA10: **RX (接收)**
+=
+
 
 请确保正确连接舵机信号线到对应的引脚，并配置电源和地线。
 请确保正确连接LED到PC13引脚，并配置限流电阻。
@@ -56,3 +60,35 @@ destop dog
 | AMS1117-3.3V电源芯片 | 1    | 用于提供3.3V稳压电源     |
 | 5V充放电一体模块     | 1    | 用于锂电池的充放电管理   |
 | 3.7V锂电池           | 1    | 提供电源的锂电池         |
+
+## UART1 接口使用说明
+
+### UART1 IO 说明
+
+
+### 初始化 UART1
+在主程序中调用 `UART1_Init` 函数初始化 UART1，指定波特率。例如：
+```c
+UART1_Init(115200); // 初始化 UART1，波特率为 115200
+```
+
+### 发送数据
+使用 `UART1_SendChar` 或 `UART1_SendString` 函数发送数据：
+```c
+UART1_SendChar('A'); // 发送单个字符
+UART1_SendString("Hello, UART1!\r\n"); // 发送字符串
+```
+
+### 接收数据
+通过 `UART1_GetChar` 函数获取接收到的数据：
+```c
+uint8_t received = UART1_GetChar();
+if (received) {
+    // 处理接收到的数据
+}
+```
+
+### 中断处理
+UART1 接收数据通过中断方式实现，接收到的数据会存储在内部缓冲区中，用户可以通过 `UART1_GetChar` 函数读取。
+
+---
