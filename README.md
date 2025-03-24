@@ -2,16 +2,35 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:08:25
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:31:39
+ * @LastEditTime: 2025-03-24 14:36:33
  * @FilePath: \stm32f103c8t6\README.md
  * @Description: 
 -->
-# stm32f103c8t6
+- [Introduction](#introduction)
+- [stm32f103c8t6说明](#stm32f103c8t6说明)
+  - [stm32f103c8t6 IO 功能表](#stm32f103c8t6-io-功能表)
+  - [常用外设](#常用外设)
+- [本项目说明](#本项目说明)
+  - [IO说明](#io说明)
+  - [时钟说明](#时钟说明)
+  - [main函数说明](#main函数说明)
+  - [使用材料](#使用材料)
+  - [UART1 接口使用说明](#uart1-接口使用说明)
+    - [UART1 IO 说明](#uart1-io-说明)
+    - [初始化 UART1](#初始化-uart1)
+    - [发送数据](#发送数据)
+    - [接收数据](#接收数据)
+    - [中断处理](#中断处理)
+
+
+
+# Introduction
 本项目 是一个基于stm32f103c8t6的桌面机器人项目，使用一片单片机，配合四个mg90舵机实现多种动作和表情。本项目从初始代码搭建，可以作为其他使用stm32f103芯片的项目的工程模板，使用标准库函数版本去开发.
 
 
+
 # stm32f103c8t6说明
-# stm32f103c8t6 IO 功能表
+## stm32f103c8t6 IO 功能表
 | 引脚   | 功能描述     | 引脚功能                     |
 PA0	    |通用输入输出	|ADC1_IN0, TIM2_CH1, EXTI0
 PA1	    |通用输入输出	|ADC1_IN1, TIM2_CH2, EXTI1
