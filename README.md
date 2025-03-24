@@ -2,9 +2,9 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:08:25
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 11:16:43
+ * @LastEditTime: 2025-03-24 13:09:42
  * @FilePath: \stm32f103c8t6\README.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 
 -->
 # stm32f103c8t6
 destop dog
@@ -25,6 +25,14 @@ destop dog
 请确保正确连接LED到PC13引脚，并配置限流电阻。
 请确保正确连接I2C设备到PA4和PA5引脚，并配置上拉电阻。
 
+## 时钟说明
+系统时钟配置为72MHz，使用外部8MHz晶振作为时钟源，并通过PLL倍频到72MHz。  
+- HCLK（AHB时钟）：72MHz  
+- PCLK1（APB1时钟）：36MHz  
+- PCLK2（APB2时钟）：72MHz  
+
+请确保外部晶振电路正确连接并稳定工作。
+
 ## main函数说明
 `main`函数是程序的入口，主要完成以下功能：
 1. 初始化系统时钟和外设。
@@ -34,3 +42,17 @@ destop dog
 5. 进入主循环，执行具体的控制逻辑。
 
 请根据实际需求修改`main`函数的实现。
+
+## 使用材料
+| 材料名称             | 数量 | 描述                     |
+|----------------------|------|--------------------------|
+| SG90舵机             | 4    | 用于控制运动的微型舵机   |
+| STM32F103C8T6芯片     | 1    | 项目核心控制单元         |
+| 1.3寸OLED            | 1    | 用于显示信息的小型屏幕   |
+| LED灯                | 2    | 用于指示状态的发光二极管 |
+| 复位按键             | 1    | 用于复位系统的按键       |
+| 六角开关             | 1    | 用于控制电路的开关       |
+| 杜邦线               | 若干 | 用于连接电路的导线       |
+| AMS1117-3.3V电源芯片 | 1    | 用于提供3.3V稳压电源     |
+| 5V充放电一体模块     | 1    | 用于锂电池的充放电管理   |
+| 3.7V锂电池           | 1    | 提供电源的锂电池         |
