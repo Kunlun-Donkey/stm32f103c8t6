@@ -1,19 +1,38 @@
-//=============================================================================
-//�ļ����ƣ�main.h
-//���ܸ�Ҫ��STM32F103C8���ļ��
-//��Ȩ���У�Դ�ع�����www.vcc-gnd.com
-//��Ȩ���£�2013-02-20
-//���Է�ʽ��J-Link OB ARM SW��ʽ 5MHz
-//=============================================================================
+/******************************************************************************
+ * @file    main.c
+ * @author  Kunlun-Donkey 1298394344@qq.com
+ * @date    2025-03-24
+ * @brief   STM32F103C8 主程序文件
+ * @details 实现舵机控制的PWM输出、LED闪烁测试以及模拟I2C通信的初始化和主循环逻辑。
+ ******************************************************************************/
 
 #include "stm32f10x.h"
 #include "stm32f10x_tim.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 
+// 函数声明
+void TIM2_PWM_Init(void);
+void GPIO_Configuration(void);
+void Delay(uint32_t nCount);
 
-//ͷ�ļ�
-// TIM2 PWM Initialization
+//=============================================================================
+// 函数名称：Delay
+// 功能概要：延时函数
+// 参数说明：nCount - 延时时间
+// 返回值：无
+//=============================================================================
+void Delay(uint32_t nCount)
+{
+  for(; nCount != 0; nCount--);
+}
+
+//=============================================================================
+// 函数名称：TIM2_PWM_Init
+// 功能概要：TIM2 PWM 初始化
+// 参数说明：无
+// 返回值：无
+//=============================================================================
 void TIM2_PWM_Init(void)
 {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
@@ -56,32 +75,17 @@ void TIM2_PWM_Init(void)
     // TIM2 enable counter
     TIM_Cmd(TIM2, ENABLE);
 }
-//��������
-void GPIO_Configuration(void);
 
 //=============================================================================
-//�ļ����ƣ�Delay
-//���ܸ�Ҫ����ʱ
-//����˵����nCount����ʱ����
-//�������أ���
-//=============================================================================
-
-void Delay(uint32_t nCount)
-{
-  for(; nCount != 0; nCount--);
-}
-
-void TIM2_PWM_Init(void);
-//=============================================================================
-//�ļ����ƣ�main
-//���ܸ�Ҫ��������
-//����˵������
-//�������أ�int
+// 函数名称：main
+// 功能概要：主函数
+// 参数说明：无
+// 返回值：int
 //=============================================================================
 int main(void)
 {
-	  GPIO_Configuration();
-   TIM2_PWM_Init();
+    GPIO_Configuration();
+    TIM2_PWM_Init();
     // Set PWM to 50% duty cycle
     TIM_SetCompare1(TIM2, 10000); // Assuming 20ms period, 50% duty cycle is 10ms
     TIM_SetCompare2(TIM2, 10000);
@@ -96,25 +100,25 @@ int main(void)
 }
 
 //=============================================================================
-//�ļ����ƣ�GPIO_Configuration
-//���ܸ�Ҫ��GPIO��ʼ��
-//����˵������
-//�������أ���
+// 函数名称：GPIO_Configuration
+// 功能概要：GPIO 初始化
+// 参数说明：无
+// 返回值：无
 //=============================================================================
 void GPIO_Configuration(void)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitTypeDef GPIO_InitStructure;
   
-  RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC , ENABLE); 						 
-//=============================================================================
-//LED -> PC13
-//=============================================================================			 
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 
-  GPIO_Init(GPIOC, &GPIO_InitStructure);
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE); 						 
+    //=============================================================================
+    // LED -> PC13
+    //=============================================================================			 
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-  // PWM -> PA0, PA1, PA2, PA3 (TIM2 CH1, CH2, CH3, CH4)
+    // PWM -> PA0, PA1, PA2, PA3 (TIM2 CH1, CH2, CH3, CH4)
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
