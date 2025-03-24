@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:20:24
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 13:26:56
+ * @LastEditTime: 2025-03-24 13:29:57
  * @FilePath: \stm32f103c8t6\USER\main.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,10 +36,10 @@ int main(void)
     Motor_Init(); // 调用 motor.c 中的初始化函数
 
     // 设置舵机初始角度为90度
-    Motor_SetAngle(1, 90);
-    Motor_SetAngle(2, 90);
-    Motor_SetAngle(3, 90);
-    Motor_SetAngle(4, 90);
+    Motor_SetAngle(MOTOR_LEFT_FRONT, 90);
+    Motor_SetAngle(MOTOR_RIGHT_FRONT, 90);
+    Motor_SetAngle(MOTOR_LEFT_REAR, 90);
+    Motor_SetAngle(MOTOR_RIGHT_REAR, 90);
 
     while (1)
     {
