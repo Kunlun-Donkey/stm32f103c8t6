@@ -18,4 +18,7 @@ void OLED_ShowChinese(uint8_t x, uint8_t y, uint8_t index);
 // 显示图片
 void OLED_ShowImage(const uint8_t *image);
 
+// 显示字符串
+void OLED_ShowString(uint8_t x, uint8_t y, const char *str);
+
 #endif // __OLED_H
