@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 13:46:14
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 13:47:31
+ * @LastEditTime: 2025-03-24 15:44:17
  * @FilePath: \stm32f103c8t6\USER\oled_faces.c
  * @Description: 存放不同表情的OLED数据
  */
@@ -869,5 +869,3 @@ const uint8_t Face_very_happy[]={
 /*********************图像数据*/
 
 
-/*****************江协科技|版权所有****************/
-/*****************jiangxiekeji.com*****************/
