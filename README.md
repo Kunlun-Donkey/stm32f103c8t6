@@ -2,14 +2,11 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:08:25
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:36:33
+ * @LastEditTime: 2025-03-24 14:46:25
  * @FilePath: \stm32f103c8t6\README.md
  * @Description: 
 -->
-- [Introduction](#introduction)
-- [stm32f103c8t6说明](#stm32f103c8t6说明)
-  - [stm32f103c8t6 IO 功能表](#stm32f103c8t6-io-功能表)
-  - [常用外设](#常用外设)
+- [简介/Introduction](#简介introduction)
 - [本项目说明](#本项目说明)
   - [IO说明](#io说明)
   - [时钟说明](#时钟说明)
@@ -21,65 +18,17 @@
     - [发送数据](#发送数据)
     - [接收数据](#接收数据)
     - [中断处理](#中断处理)
+- [附录](#附录)
+  - [stm32f103c8t6 IO 功能表](#stm32f103c8t6-io-功能表)
+  - [常用外设](#常用外设)
 
 
 
-# Introduction
+# 简介/Introduction
 本项目 是一个基于stm32f103c8t6的桌面机器人项目，使用一片单片机，配合四个mg90舵机实现多种动作和表情。本项目从初始代码搭建，可以作为其他使用stm32f103芯片的项目的工程模板，使用标准库函数版本去开发.
 
 
 
-# stm32f103c8t6说明
-## stm32f103c8t6 IO 功能表
-| 引脚   | 功能描述     | 引脚功能                     |
-PA0	    |通用输入输出	|ADC1_IN0, TIM2_CH1, EXTI0
-PA1	    |通用输入输出	|ADC1_IN1, TIM2_CH2, EXTI1
-PA2	    |通用输入输出	|ADC1_IN2, TIM2_CH3, EXTI2
-PA3	    |通用输入输出	|ADC1_IN3, TIM2_CH4, EXTI3
-PA4	    |通用输入输出	|ADC1_IN4, I2C1_SDA, EXTI4
-PA5	    |通用输入输出	|ADC1_IN5, SPI1_SCK, TIM2_CH1
-PA6	    |通用输入输出	|ADC1_IN6, SPI1_MISO
-PA7	    |通用输入输出	|ADC1_IN7, SPI1_MOSI
-PA8	    |通用输入输出	|MCO, TIM1_CH1
-PA9	    |通用输入输出	|USART1_TX
-PA10	|通用输入输出	|USART1_RX
-PA11	|通用输入输出	|USB_DM
-PA12	|通用输入输出	|USB_DP
-PA13	|通用输入输出	|SWDIO
-PA14	|通用输入输出	|SWCLK
-PA15	|通用输入输出	|JTDI, TIM2_CH1
-PB0	    |通用输入输出	|ADC1_IN8, SPI1_NSS
-PB1	    |通用输入输出	|ADC1_IN9, SPI1_SCK
-PB2	    |通用输入输出	|I2C1_SCL, SPI1_MISO
-PB3	    |通用输入输出	|I2C1_SDA, SPI1_MOSI
-PB4	    |通用输入输出	|USART2_TX
-PB5	    |通用输入输出	|USART2_RX
-PB6	    |通用输入输出	|SPI1_SCK
-PB7	    |通用输入输出	|SPI1_MISO
-PB8	    |通用输入输出	|USART1_TX
-PB9	    |通用输入输出	|USART1_RX
-PB10	|通用输入输出	|SPI1_NSS
-PB11	|通用输入输出	|SPI1_MISO
-PB12	|通用输入输出	|SPI1_MOSI
-PB13	|通用输入输出	|SWDIO
-PB14	|通用输入输出	|SWCLK
-PB15	|通用输入输出	|JTDO
-
-## 常用外设
-USART：串口通信，常见于 PA9 (TX), PA10 (RX), PB6 (TX), PB7 (RX)。
-
-SPI：串行外设接口，常见于 PA5 (SCK), PA6 (MISO), PA7 (MOSI)，以及 PB3 (SCK), PB4 (MISO), PB5 (MOSI)。
-
-I2C：串行外设接口，PA6 (SCL), PA7 (SDA)，以及 PB6 (SCL), PB7 (SDA)。
-
-ADC：模拟输入引脚，PA0 至 PA7, PB0, PB1，均为 ADC 通道。
-
-TIM：定时器功能，PA0 至 PA7 以及 PB6, PB7 等。
-
-调试与调试接口
-SWDIO (PA13) 和 SWCLK (PA14) 为调试接口（Serial Wire Debug）。
-
-JTDI (PA15)，JTDO (PB15) 是用于 JTAG 调试的接口。
 
 
 # 本项目说明
@@ -166,3 +115,54 @@ if (received) {
 UART1 接收数据通过中断方式实现，接收到的数据会存储在内部缓冲区中，用户可以通过 `UART1_GetChar` 函数读取。
 
 ---
+# 附录
+## stm32f103c8t6 IO 功能表
+| 引脚   | 功能描述     | 引脚功能                     |
+PA0	    |通用输入输出	|ADC1_IN0, TIM2_CH1, EXTI0
+PA1	    |通用输入输出	|ADC1_IN1, TIM2_CH2, EXTI1
+PA2	    |通用输入输出	|ADC1_IN2, TIM2_CH3, EXTI2
+PA3	    |通用输入输出	|ADC1_IN3, TIM2_CH4, EXTI3
+PA4	    |通用输入输出	|ADC1_IN4, I2C1_SDA, EXTI4
+PA5	    |通用输入输出	|ADC1_IN5, SPI1_SCK, TIM2_CH1
+PA6	    |通用输入输出	|ADC1_IN6, SPI1_MISO
+PA7	    |通用输入输出	|ADC1_IN7, SPI1_MOSI
+PA8	    |通用输入输出	|MCO, TIM1_CH1
+PA9	    |通用输入输出	|USART1_TX
+PA10	|通用输入输出	|USART1_RX
+PA11	|通用输入输出	|USB_DM
+PA12	|通用输入输出	|USB_DP
+PA13	|通用输入输出	|SWDIO
+PA14	|通用输入输出	|SWCLK
+PA15	|通用输入输出	|JTDI, TIM2_CH1
+PB0	    |通用输入输出	|ADC1_IN8, SPI1_NSS
+PB1	    |通用输入输出	|ADC1_IN9, SPI1_SCK
+PB2	    |通用输入输出	|I2C1_SCL, SPI1_MISO
+PB3	    |通用输入输出	|I2C1_SDA, SPI1_MOSI
+PB4	    |通用输入输出	|USART2_TX
+PB5	    |通用输入输出	|USART2_RX
+PB6	    |通用输入输出	|SPI1_SCK
+PB7	    |通用输入输出	|SPI1_MISO
+PB8	    |通用输入输出	|USART1_TX
+PB9	    |通用输入输出	|USART1_RX
+PB10	|通用输入输出	|SPI1_NSS
+PB11	|通用输入输出	|SPI1_MISO
+PB12	|通用输入输出	|SPI1_MOSI
+PB13	|通用输入输出	|SWDIO
+PB14	|通用输入输出	|SWCLK
+PB15	|通用输入输出	|JTDO
+
+## 常用外设
+USART：串口通信，常见于 PA9 (TX), PA10 (RX), PB6 (TX), PB7 (RX)。
+
+SPI：串行外设接口，常见于 PA5 (SCK), PA6 (MISO), PA7 (MOSI)，以及 PB3 (SCK), PB4 (MISO), PB5 (MOSI)。
+
+I2C：串行外设接口，PA6 (SCL), PA7 (SDA)，以及 PB6 (SCL), PB7 (SDA)。
+
+ADC：模拟输入引脚，PA0 至 PA7, PB0, PB1，均为 ADC 通道。
+
+TIM：定时器功能，PA0 至 PA7 以及 PB6, PB7 等。
+
+调试与调试接口
+SWDIO (PA13) 和 SWCLK (PA14) 为调试接口（Serial Wire Debug）。
+
+JTDI (PA15)，JTDO (PB15) 是用于 JTAG 调试的接口。
