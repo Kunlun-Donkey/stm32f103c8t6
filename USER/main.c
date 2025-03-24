@@ -2,17 +2,11 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:20:24
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:00:07
+ * @LastEditTime: 2025-03-24 14:04:53
  * @FilePath: \stm32f103c8t6\USER\main.c
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 实现舵机控制的PWM输出、LED闪烁测试以及模拟I2C通信的初始化和主循环逻辑。
  */
-/******************************************************************************
- * @file    main.c
- * @author  Kunlun-Donkey 1298394344@qq.com
- * @date    2025-03-24
- * @brief   STM32F103C8 主程序文件
- * @details 实现舵机控制的PWM输出、LED闪烁测试以及模拟I2C通信的初始化和主循环逻辑。
- ******************************************************************************/
+
 
 #include "stm32f10x.h"
 #include "stm32f10x_tim.h"
@@ -22,6 +16,7 @@
 #include "delay.h" // 添加延时头文件
 #include "oled.h" // 添加 OLED 头文件引用
 #include "oled_faces.h" // 添加表情数据头文件
+#include "uart.h" // 添加 UART 头文件
 
 // 函数声明
 void GPIO_Configuration(void);
@@ -37,6 +32,9 @@ int main(void)
     GPIO_Configuration();
     Motor_Init(); // 调用 motor.c 中的初始化函数
     OLED_Init();  // 初始化 OLED
+    UART1_Init(115200); // 初始化 UART1，波特率为 115200
+
+    UART1_SendString("System initialized.\r\n"); // 发送日志信息
 
     // 显示表情 "hello"
     OLED_ShowImage(Face_hello);
@@ -49,8 +47,14 @@ int main(void)
 
     while (1)
     {
+        if (UART1_RxHead != UART1_RxTail) { // 检查是否有接收到的数据
+            uint8_t received = UART1_GetChar();
+            UART1_SendChar(received); // 回显接收到的数据
+        }
+
         // Toggle PC13
         GPIOC->ODR ^= GPIO_Pin_13;
+        UART1_SendString("Toggling LED.\r\n"); // 发送日志信息
         Delay_ms(500); // 使用毫秒级延时
     }
 }
