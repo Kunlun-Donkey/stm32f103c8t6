@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:08:25
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:49:49
+ * @LastEditTime: 2025-03-25 14:58:23
  * @FilePath: \stm32f103c8t6\README.md
  * @Description: 
 -->
@@ -27,7 +27,7 @@
 # 简介/Introduction
 本项目 是一个基于stm32f103c8t6的桌面机器人项目，使用一片单片机，配合四个mg90舵机和一个OLED屏幕实现多种动作和表情。本项目从初始代码搭建，可以作为其他使用stm32f103芯片的项目的工程模板，使用标准库函数版本去开发.
 后期考虑扩展添加串口模块和语音模块，和wifi模块，等待持续更新。
-
+**我的CSDN地址如下**：https://blog.csdn.net/qq_39642740?spm=1010.2135.3001.5343
 
 
 
