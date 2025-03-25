@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:20:24
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-25 13:47:47
+ * @LastEditTime: 2025-03-25 14:50:41
  * @FilePath: \stm32f103c8t6\USER\main.c
  * @Description: 实现舵机控制的PWM输出、LED闪烁测试以及模拟I2C通信的初始化和主循环逻辑。
  */
@@ -34,6 +34,7 @@ int main(void)
     Motor_Init(); // 调用 motor.c 中的初始化函数
     OLED_Init();  // 初始化 OLED
     UART1_Init(115200); // 初始化 UART1，波特率为 115200
+    Action_RegisterCallbacks(); // 注册舵机动作回调函数
 
     UART1_SendString("System initialized.\r\n"); // 发送日志信息
 

@@ -1,6 +1,7 @@
 #include "stm32f10x.h"
 #include "uart.h"
 #include "stm32f10x_usart.h"
+#include "servo_control.h"
 #define UART1_RX_BUFFER_SIZE 128
 
 volatile uint8_t UART1_RxBuffer[UART1_RX_BUFFER_SIZE]; // 接收缓冲区
@@ -73,12 +74,33 @@ uint8_t UART1_GetChar(void) {
 // USART1中断服务函数
 void USART1_IRQHandler(void) {
     if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
-        uint8_t data = USART_ReceiveData(USART1);
-        uint8_t nextHead = (UART1_RxHead + 1) % UART1_RX_BUFFER_SIZE;
+        uint8_t data = USART_ReceiveData(USART1); // 读取接收到的数据
 
-        if (nextHead != UART1_RxTail) { // 检查缓冲区是否溢出
-            UART1_RxBuffer[UART1_RxHead] = data;
-            UART1_RxHead = nextHead;
+        // 根据接收到的数据执行不同的舵机动作
+        switch (data) {
+            case 0x01: // 接收到 1
+                if (actionCallbacks.RelaxedGetDown) {
+                    actionCallbacks.RelaxedGetDown();
+                }
+                break;
+            case 0x02: // 接收到 2
+                if (actionCallbacks.Upright) {
+                    actionCallbacks.Upright();
+                }
+                break;
+            case 0x03: // 接收到 3
+                if (actionCallbacks.GetDown) {
+                    actionCallbacks.GetDown();
+                }
+                break;
+            case 0x04: // 接收到 4
+                if (actionCallbacks.Sit) {
+                    actionCallbacks.Sit();
+                }
+                break;
+            default:
+                // 未定义的指令
+                break;
         }
     }
 }
