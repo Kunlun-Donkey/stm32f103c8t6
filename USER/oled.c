@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 13:46:14
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:01:16
+ * @LastEditTime: 2025-03-25 09:25:47
  * @FilePath: \stm32f103c8t6\USER\oled.c
  * @Description: OLED显示驱动实现
  */
@@ -112,13 +112,13 @@ void OLED_Clear(void)
 //=============================================================================
 void OLED_ShowChar(uint8_t x, uint8_t y, char chr)
 {
-    //uint8_t c = chr - ' '; // ASCII偏移
+    uint8_t c = chr - ' '; // ASCII偏移
     OLED_WriteByte(0xB0 + y, OLED_CMD); // 设置页地址
     OLED_WriteByte(((x & 0xF0) >> 4) | 0x10, OLED_CMD); // 设置高列地址
     OLED_WriteByte((x & 0x0F), OLED_CMD); // 设置低列地址
     for (uint8_t i = 0; i < 6; i++) // 假设使用6x8字体
     {
-        //OLED_WriteByte(font6x8[c][i], OLED_DATA); // 写入字体数据
+        OLED_WriteByte(OLED_F6x8[c][i], OLED_DATA); // 写入字体数据
     }
 }
 
@@ -162,7 +162,7 @@ void OLED_ShowChinese(uint8_t x, uint8_t y, uint8_t index)
         OLED_WriteByte((x & 0x0F), OLED_CMD); // 设置低列地址
         for (uint8_t j = 0; j < 16; j++)
         {
-           // OLED_WriteByte(font16x16[index][i * 16 + j], OLED_DATA); // 写入字体数据
+           //OLED_WriteByte(font16x16[index][i * 16 + j], OLED_DATA); // 写入字体数据
         }
     }
 }

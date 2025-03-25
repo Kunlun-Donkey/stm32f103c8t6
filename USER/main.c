@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:20:24
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 14:04:53
+ * @LastEditTime: 2025-03-25 09:34:25
  * @FilePath: \stm32f103c8t6\USER\main.c
  * @Description: 实现舵机控制的PWM输出、LED闪烁测试以及模拟I2C通信的初始化和主循环逻辑。
  */
@@ -18,6 +18,7 @@
 #include "oled_faces.h" // 添加表情数据头文件
 #include "uart.h" // 添加 UART 头文件
 #include "types.h" // 添加类型定义头文件
+
 // 函数声明
 void GPIO_Configuration(void);
 
@@ -47,10 +48,10 @@ int main(void)
 
     while (1)
     {
-        // if (UART1_RxHead != UART1_RxTail) { // 检查是否有接收到的数据
-        //     uint8_t received = UART1_GetChar();
-        //     UART1_SendChar(received); // 回显接收到的数据
-        // }
+        if (UART1_RxHead != UART1_RxTail) { // 检查是否有接收到的数据
+            uint8_t received = UART1_GetChar();
+            UART1_SendChar(received); // 回显接收到的数据
+        }
 
         // Toggle PC13
         GPIOC->ODR ^= GPIO_Pin_13;
