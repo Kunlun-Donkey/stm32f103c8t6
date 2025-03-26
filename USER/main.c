@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 11:20:24
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-25 14:50:41
+ * @LastEditTime: 2025-03-26 10:56:41
  * @FilePath: \stm32f103c8t6\USER\main.c
  * @Description: 实现舵机控制的PWM输出、LED闪烁测试以及模拟I2C通信的初始化和主循环逻辑。
  */
@@ -41,11 +41,8 @@ int main(void)
     // 显示表情 "hello"
     OLED_ShowImage(Face_hello);
 
-    // 设置舵机初始角度为90度
-    Motor_SetAngle(MOTOR_LEFT_FRONT, 30);
-    Motor_SetAngle(MOTOR_RIGHT_FRONT, 60);
-    Motor_SetAngle(MOTOR_LEFT_REAR, 90);
-    Motor_SetAngle(MOTOR_RIGHT_REAR, 120);
+    // 设置所有舵机到初始角度
+    Servo_SetInitialPosition();
 
     while (1)
     {
