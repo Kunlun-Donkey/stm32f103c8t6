@@ -2,7 +2,7 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-24 13:15:07
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-24 13:16:01
+ * @LastEditTime: 2025-03-26 11:21:50
  * @FilePath: \stm32f103c8t6\USER\motor.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -18,6 +18,13 @@
 #include "stm32f10x_tim.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
+#include "motor.h"
+
+// 定义当前舵机角度数组
+static uint8_t current_angles[4] = {90, 90, 90, 90}; // 初始角度为 90 度
+
+// 定义死区范围
+#define ANGLE_DEADZONE 5 // 死区范围为 ±2 度
 
 //=============================================================================
 // 函数名称：Motor_Init
@@ -82,6 +89,18 @@ void Motor_Init(void)
 //=============================================================================
 void Motor_SetAngle(uint8_t channel, uint8_t angle)
 {
+    if (channel >= 4) {
+        return; // 无效的舵机 ID
+    }
+
+    // 检查目标角度是否在死区范围内
+    if (abs(current_angles[channel] - angle) <= ANGLE_DEADZONE) {
+        return; // 如果在死区范围内，不更新角度
+    }
+
+    // 更新当前角度
+    current_angles[channel] = angle;
+
     uint16_t pulse = 1000 + (angle * 1000 / 180); // 将角度转换为脉宽 (1ms到2ms)
     switch (channel)
     {
