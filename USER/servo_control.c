@@ -2,13 +2,26 @@
  * @Author: Kunlun-Donkey 1298394344@qq.com
  * @Date: 2025-03-25 10:58:21
  * @LastEditors: Kunlun-Donkey 1298394344@qq.com
- * @LastEditTime: 2025-03-25 13:44:38
+ * @LastEditTime: 2025-03-27 16:28:05
  * @FilePath: \stm32f103c8t6\USER\servo_control.c
  * @Description: 添加动作行为
  */
 #include "servo_control.h"
 #include "motor.h"
 #include "delay.h"
+
+	/*舵机位置
+	    1 MOTOR_LEFT_FRONT       2MOTOR_RIGHT_FRONT
+        PA0                       PA1
+	
+
+	
+	    3 MOTOR_LEFT_REAR       4 MOTOR_RIGHT_REAR
+        PA2                      PA3           
+	*/
+
+
+
 
 // 定义回调函数结构体
 ActionCallbacks actionCallbacks;
